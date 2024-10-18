@@ -48,19 +48,6 @@ class Field {
     generateSettlement() {
         const settlement = new Settlement(this);
     }
-    //TODO
-    /* sumarRecursos(village) {
-        console.log(village.field)
-        const totalResources = village.field.resources.reduce((acc, resource) => {
-            const { name, amountPerHour } = resource;
-            acc[name] = (acc[name] || 0) + amountPerHour;
-            return acc;
-        }, {});
-
-        Object.entries(totalResources).forEach(([resource, total]) => {
-            console.log(`${resource}: ${total} per hour`);
-        });
-    } */
 
 
     toJSON() {

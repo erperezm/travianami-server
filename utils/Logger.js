@@ -75,6 +75,10 @@ class Logger{
             this.log(`Village: ${villageName} created with the following resouruce: ${resource.Id}, Name: ${resource.type}, Level: ${resource.level}, Quantity per Hour: ${resource.amountPerHour}`);
         });
     }
+    villageCreated(village){
+            this.log(`Village: ${village.name} created with id : ${village.Id}, resource amount: ${JSON.stringify(village.resourceAmount)}`);
+    }
+
 
     /**
      * Logs a message when the maximum level is reached for a specific resource.
