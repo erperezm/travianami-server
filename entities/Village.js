@@ -7,25 +7,30 @@ const log = new Logger();
 
 class Village {
 
-    constructor(Id = null, name = 'New Village') {
+    constructor(Id = null, name = 'New Village', fild = null, resourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_AMOUNT), maxResourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_MAX_AMOUNT)) {
         this.Id = Id || getUUID();
         this.name = name;
-        this.field = new Field(this);
-        this.resourceAmount;
-        this.calculateResourceAmount(this.field);
+        fild == null ? this.field = new Field(this) : this.field = fild;
+        this.resourceAmount = resourceAmount;
+        this.resourcePerHour;
+        this.maxResourceAmount = maxResourceAmount;
+        this.calculateResourcePerHour(this.field);
+        setInterval(() => this.updateResourceAmount(), process.env.UPDATE_INTERVAL);
         log.villageCreated(this);
     }
 
     changeName(name) {
-        log.villageNameChanged(this.name, name)
         this.name = name;
+        log.villageNameChanged(this.name, name)
     }
-    calculateResourceAmount(field) {
+
+
+    calculateResourcePerHour(field) {
         const result = {};
 
         field.resources.forEach(resource => {
             const { type, amountPerHour } = resource;
-            const amount = parseFloat(amountPerHour);
+            const amount = parseInt(amountPerHour);
     
             if (result[type]) {
                 result[type] += amount;
@@ -39,14 +44,21 @@ class Village {
             finalResult[`totalAmount:`] = `, total:${result[type]}`;
         });
 
-        this.resourceAmount = result;
+        this.resourcePerHour = result;
     }
-    calculateResourcePerHour() {
 
-    }
+
     updateResourceAmount() {
-      
+       // console.log("MRA", this.maxResourceAmount)
+        //console.log("AMH", this.resourcePerHour)
+        Object.keys(this.resourcePerHour).forEach(type => {
+            let amount =  parseFloat(this.resourceAmount[type]) + ((parseInt(this.resourcePerHour[type])/60))/60
+            amount >= this.maxResourceAmount[type] ? this.resourceAmount[type] = this.maxResourceAmount[type]  : this.resourceAmount[type] = amount
+        });
+        //console.log("RA ",this.resourceAmount)
+        this.calculateResourcePerHour(this.field);
     }
+
     updateResourcePerHour() {
 
     }
@@ -56,7 +68,11 @@ class Village {
             Id: this.Id,
             name: this.name,
             field: this.field.toJSON(),
-            totalAmount: this.totalAmount
+            totalAmount: this.totalAmount,
+            resourceAmount: this.resourceAmount,
+            resourcePerHour: this.resourcePerHour,
+            maxResourceAmount: this.maxResourceAmount
+
         }
     }
 }

@@ -14,7 +14,7 @@ function initGameObjects() {
 
     for (let gridWith = 0; gridWith < process.env.GAME_GRID_WIDTH ; gridWith++) {
         for (let gridHeight = 0; gridHeight < process.env.GAME_GRID_HEIGHT ; gridHeight++) {
-            const village = new Village(null, `village:${gridWith}${gridHeight}`);
+            const village = new  Village(null, `village:${gridWith}${gridHeight}`);
             GAME_GRID.push(village);
         }
     }
