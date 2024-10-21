@@ -13,12 +13,20 @@ class Settlement {
      * @param {Array} troops - List of troops stationed at the settlement.
      */
     constructor(field, Id = null, population = 100, buildings = null, troop = null) {
-        this.field = null;
-       this.Id || getUUID();
+        this.field = field;
+        Id == null ? this.Id = getUUID() : this.Id = Id;
         this.population = population;
-        this.buildings ? this.buildings = buildings : this.setBuildings();
+        buildings == null ? this.setBuildings() : this.buildings = buildings  ;
     }
     setBuildings(){
+        const buildings = JSON.parse(process.env.BUILDINGS);
+        this.buildings = [];
+        buildings.forEach(building => {
+            const newBuilding = new Building(this, building)
+            this.buildings.push(newBuilding);
+        })
+     
+        console.log("hola", this.buildings)
     }
     toJSON() {
         return {

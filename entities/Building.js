@@ -3,13 +3,25 @@ const Logger = require(path.join(__dirname, '..', 'utils', 'Logger.js'));
 const getUUID = require(path.join(__dirname, '..', 'utils', 'Uuid.js'));
 
 class Building {
-    constructor(settlement, Id = null,  name = "New Building", level = 0, locked = true, maxLevel = 10) {
+    constructor(
+        settlement = null, 
+        name = "New Building", 
+        Id = getUUID(),  
+        level = 0, 
+        locked = true, 
+        initLevel = process.env.BUILDING_INIT_LEVEL, 
+        maxLevel = process.env.BUILDING_MAX_LEVEL, 
+        bonus = null
+    ) 
+    {
       this.settlement = settlement;
-      this.Id = Id || getUUID();
       this.name = name;        
+      this.Id = Id;
       this.level = level;      
       this.locked = locked;
+      this.initLevel = initLevel;
       this.maxLevel = maxLevel;
+      this.bonus = bonus;
     }
   
     upgrade() {

@@ -15,7 +15,7 @@ class Resource {
         productionGrowth = process.env.RESOURCE_PRODUCTION_GROW_PER_LEVEL){
             
         this.fild = fild;
-        this.Id || getUUID();
+        Id == null ? this.Id = getUUID() : this.Id = Id;
         this.type= type;
         this.level = level;
         this.locked = locked;
