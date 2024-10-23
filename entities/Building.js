@@ -27,7 +27,7 @@ class Building {
     upgrade() {
         if(this.level < this.maxLevel && this.locked == false){
             this.level += 1; 
-            this.lockNextLevel();
+            this.#lockNextLevel();
 
             log.buildingUpdated(this.name, this.fild.village.name, this.level)
         }
@@ -38,11 +38,11 @@ class Building {
         }
     }
 
-    lockNextLevel(){
+    #lockNextLevel(){
         this.locked = true;
     }
 
-    unlockNextLevel(){
+    #unlockNextLevel(){
         this.locked = false;
     }
 

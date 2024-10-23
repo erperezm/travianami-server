@@ -5,7 +5,7 @@ const { pathSelector } = require(path.join(__dirname, 'MinimalEx.js'));
 function villagePath(req, res){
     //let params = null;
     routes = [
-        { method: 'GET', path: '/village', handler: getVillages },
+        { method: 'GET', path: '/villages', handler: getVillages },
         { method: 'GET', path: '/village/:id',  handler: getVillage },  
         { method: 'GET', path: '/village/id/:id/name/:name', handler: getVillage },      
     ]
