@@ -49,13 +49,10 @@ class Village {
 
 
     #updateResourceAmount() {
-       // console.log("MRA", this.maxResourceAmount)
-        //console.log("AMH", this.resourcePerHour)
         Object.keys(this.resourcePerHour).forEach(type => {
             let amount =  parseFloat(this.resourceAmount[type]) + ((parseInt(this.resourcePerHour[type])/60))/60
             amount >= this.maxResourceAmount[type] ? this.resourceAmount[type] = this.maxResourceAmount[type]  : this.resourceAmount[type] = amount
         });
-        //console.log("RA ",this.resourceAmount)
         this.calculateResourcePerHour(this.field);
     }
 
