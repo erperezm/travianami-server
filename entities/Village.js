@@ -15,7 +15,7 @@ class Village {
         this.resourcePerHour;
         this.maxResourceAmount = maxResourceAmount;
         this.calculateResourcePerHour(this.field);
-        setInterval(() => this.updateResourceAmount(), process.env.UPDATE_INTERVAL);
+        setInterval(() => this.#updateResourceAmount(), process.env.UPDATE_INTERVAL);
         log.villageCreated(this);
     }
 
@@ -48,7 +48,7 @@ class Village {
     }
 
 
-    updateResourceAmount() {
+    #updateResourceAmount() {
        // console.log("MRA", this.maxResourceAmount)
         //console.log("AMH", this.resourcePerHour)
         Object.keys(this.resourcePerHour).forEach(type => {
