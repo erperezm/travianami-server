@@ -23,6 +23,14 @@ class Settlement {
         this.population = population;
         this.buildings = buildings;
     }
+
+    getBuildingIndex(id){
+        const index = buildings.find(a => a.Id == id)
+        return index;
+    }
+
+    
+
     #setBuildings(){
         const buildingsNames = JSON.parse(process.env.BUILDINGS);
         let buildings = [];

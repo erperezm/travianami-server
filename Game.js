@@ -3,11 +3,10 @@ const loadEnv = require(path.join(__dirname, 'utils', 'EnvReader'));
 const initHttpServer = require(path.join(__dirname, 'server', 'HttpServer.js'));
 
 initGameObjects();
-initHttpServer();
 
 function initGameObjects() {
     const Village = require(path.join(__dirname, 'entities','Village.js'))
-    const GAME_GRID = [];
+    global.GAME_GRID = [];
 
     loadEnv(".env")
     loadEnv('Game.env')
@@ -18,7 +17,7 @@ function initGameObjects() {
             GAME_GRID.push(village);
         }
     }
-    process.env.GAME_GRID = JSON.stringify(GAME_GRID);
+    initHttpServer();
 
 }
 

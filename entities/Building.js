@@ -27,14 +27,12 @@ class Building {
     upgrade() {
         if(this.level < this.maxLevel && this.locked == false){
             this.level += 1; 
-            this.#lockNextLevel();
-
             log.buildingUpdated(this.name, this.fild.village.name, this.level)
+            return {status: true, message: `upgraded to level: ${this.level}`};
         }
-        else if (this.level = this.maxLevel){
+        else{
             log.maxLevelReached(this.fild.village.Id, this.Id, this.name);
-        }else{
-            log.unknownError(this.fild.village.Id, `error trying to upgrade building: ${this.name} with Id: ${this.Id}`);
+            return {status: false, message: "max level reached"};
         }
     }
 

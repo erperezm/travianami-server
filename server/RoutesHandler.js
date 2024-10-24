@@ -1,5 +1,5 @@
 const path = require('path');
-const { mainPathSelector } = require(path.join(__dirname, 'MinimalEx.js'));
+const { mainPathSelector } = require(path.join(__dirname, 'MiniX.js'));
 
 
 function routesHandler(req, res){   

@@ -7,10 +7,10 @@ const log = new Logger();
 
 class Village {
 
-    constructor(Id = null, name = 'New Village', fild = null, resourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_AMOUNT), maxResourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_MAX_AMOUNT)) {
+    constructor(Id = null, name = 'New Village', field = null, resourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_AMOUNT), maxResourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_MAX_AMOUNT)) {
         this.Id = Id || getUUID();
         this.name = name;
-        fild == null ? this.field = new Field(this) : this.field = fild;
+        field == null ? this.field = new Field(this) : this.field = field;
         this.resourceAmount = resourceAmount;
         this.resourcePerHour;
         this.maxResourceAmount = maxResourceAmount;
