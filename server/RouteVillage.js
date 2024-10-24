@@ -32,12 +32,10 @@ function getVillages(res, params){
 
 
 function getVillage(res, params){
-    const village = findVillage(params);
+    const village = findVillage(res, params);
     if(village){
 
         httpResponse(res, {village:village})
-    }else{
-        httpResponse(res, {message:'sorry bro :\'( no village found'})
     }
 }
 
