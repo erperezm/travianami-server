@@ -7,7 +7,14 @@ const log = new Logger();
 
 class Village {
 
-    constructor(Id = null, name = 'New Village', field = null, resourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_AMOUNT), maxResourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_MAX_AMOUNT)) {
+    constructor(
+        Id = null, 
+        name = 'New Village', 
+        field = null, 
+        resourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_AMOUNT), 
+        maxResourceAmount = JSON.parse(process.env.RESOURCE_DEFAULT_MAX_AMOUNT)) 
+
+        {
         this.Id = Id || getUUID();
         this.name = name;
         field == null ? this.field = new Field(this) : this.field = field;
@@ -19,8 +26,7 @@ class Village {
         setInterval(() => this.#updateResourceAmount(), process.env.UPDATE_INTERVAL);
         this.#countResources()
         log.villageCreated(this);
-
-    }
+        }
 
     changeName(name) {
         this.name = name;

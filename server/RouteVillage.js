@@ -5,8 +5,8 @@ function villagePath(req, res){
     routes = [
         { method: 'GET', path: '/village', handler: getVillages },
         { method: 'GET', path: '/village/:id',  handler: getVillage },  
-        { method: 'GET', path: '/village/:id/upgrade/resource/:resourceId',  handler: upgradeResource },  
-        { method: 'GET', path: '/village/:id/upgrade/building/:buildingId',  handler: upgradeBuilding },  
+        { method: 'POST', path: '/village/:id/upgrade/resource/:resourceId',  handler: upgradeResource },  
+        { method: 'POST', path: '/village/:id/upgrade/building/:buildingId',  handler: upgradeBuilding },  
     ]
     pathSelector(req, res, routes);
 }
@@ -29,7 +29,6 @@ function httpResponse(res, response){
 function getVillages(res, params){
     httpResponse(res, global.GAME_GRID)
 }
-
 
 function getVillage(res, params){
     const village = findVillage(res, params);
@@ -64,4 +63,5 @@ function upgradeBuilding(res, params){
 
     httpResponse(res, response);
 }
+
 module.exports = villagePath;
