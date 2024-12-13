@@ -51,9 +51,6 @@ function upgradeResource(res, params){
             httpResponse(res, response)
         }
     }
-
-
-    
 }
 
 function upgradeBuilding(res, params){

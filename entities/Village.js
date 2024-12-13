@@ -32,8 +32,6 @@ class Village {
         this.name = name;
         log.villageNameChanged(this.name, name)
     }
-
-    
     
     #countResources() {
         const resources = this.field.resources;
@@ -77,10 +75,6 @@ class Village {
             amount >= this.maxResourceAmount[type] ? this.resourceAmount[type] = this.maxResourceAmount[type]  : this.resourceAmount[type] = amount
         });
         this.#calculateResourcePerHour(this.field);
-    }
-
-    updateResourcePerHour() {
-
     }
 
     toJSON() {

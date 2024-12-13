@@ -89,7 +89,9 @@ class Logger{
     maxLevelReached(villageId, Id, name){
         this.log(`Max level reach in the resource: ${name} with Id: ${Id} within the village: ${villageId}`);
     }
-
+    notEnoughResources(resourceAmount, villageId, resourceId){
+        this.log(`Resources: ${JSON.stringify(resourceAmount)}, no enough resources, within the village ${villageId} in resource: ${resourceId}`);
+    }
 
     /**
      * Logs an unknown error message for a specific village.
